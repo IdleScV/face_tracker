@@ -4,7 +4,7 @@ from utils import initialize_video_capture, cleanup_resources, initialize_socket
 
 def main():
     tracker = FaceTracker()
-    cap = initialize_video_capture()
+    cap = initialize_video_capture() 
     sock = initialize_socket()
     
     try:

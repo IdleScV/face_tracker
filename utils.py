@@ -1,11 +1,18 @@
 import cv2
 import socket
 import json
+from dotenv import load_dotenv
+import os
 
-def initialize_video_capture(device_id=0):
+# Load environment variables from .env file
+load_dotenv()
+
+def initialize_video_capture():
+    # Get device ID from environment variable, default to 0 if not set
+    device_id = int(os.getenv("VIDEO_CAPTURE_DEVICE", 0))
     cap = cv2.VideoCapture(device_id)
     if not cap.isOpened():
-        raise Exception("Error: Could not open webcam.")
+        raise Exception(f"Error: Could not open webcam with device ID {device_id}.")
     return cap
 
 def cleanup_resources(cap, face_mesh, sock=None):
